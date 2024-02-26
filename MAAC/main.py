@@ -15,13 +15,13 @@ def make_parallel_env(env_id, n_rollout_threads, seed):
     def get_env_fn(rank):
         def init_env():
             # edit parameters
-            env = GymEnv(name="../Build_Linux/Logistics",
-                         mapsize=13,
+            env = GymEnv(name="../DroneRescue2.0.app",
+                         mapsize=20,
                          numbuilding=3,
-                         max_smallbox=100,
-                         max_bigbox=100,
-                         width=480,
-                         height=270,
+                         max_smallbox=20,
+                         max_bigbox=20,
+                         width=640,
+                         height=480,
                          timescale=20,
                          quality_level=5,
                          target_frame_rate=None,

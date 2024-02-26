@@ -10,23 +10,23 @@ public class LogisticsAcademy : MonoBehaviour
     // Environment Parameters
     int mapsize = 13;
     int numbuilding = 3;
+    int UAVAgents = 5;
     int slimit = 10;
-    int blimit = 10;
+    int maxstep = 10000;
 
     public void Awake() {
         Academy.Instance.OnEnvironmentReset += EnvironmentReset;
         var envParams = Academy.Instance.EnvironmentParameters;
 
-        MAP = GameObject.Find("MAP");
-
-        mapsize = (int)(envParams.GetWithDefault("mapsize", 13f));
-        numbuilding = (int)(envParams.GetWithDefault("building_num", 3f));
-        slimit = (int)(envParams.GetWithDefault("slimit", 10f));
-        blimit = (int)(envParams.GetWithDefault("blimit", 10f));
+        mapsize = (int)(envParams.GetWithDefault("mapsize", 30f)); // map size
+        numbuilding = (int)(envParams.GetWithDefault("building_num", 0f)); // number of buildings
+        slimit = (int)(envParams.GetWithDefault("slimit", 2f)); // 
+        //maxstep = (int)(envParams.GetWithDefault("maxsteps", 10000f)); // 
+        UAVAgents = (int)(envParams.GetWithDefault("uavagents", 5f)); //
     }
 
     public void EnvironmentReset() {
-        MAP.GetComponent<map>().WriteCSV();
-        MAP.GetComponent<map>().InitWorld(mapsize, numbuilding, slimit, blimit);
+        MAP.GetComponent<Env>().WriteCSV();
+        MAP.GetComponent<Env>().InitWorld(mapsize, numbuilding, slimit, maxstep, UAVAgents);
     }
 }

@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Logistics.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/SearchAndRescue1.0.unity
+    guid: 440d40a2a3e2d41f49ead2dca9bc8b27
   m_configObjects: {}
