@@ -1,0 +1,5 @@
+{
+    "name":"ChoasAgent",
+    "State": ["startPos","pos"],
+    "capabilities" : ["ChaosCap_ChangeDestination", "ChaosCap_ChangeTarget"]
+}

@@ -5,36 +5,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents.Sensors;
+using Unity.MLAgents;
 using Spaces;
 
 namespace Capabilities
 {
 
-    // class Capability {
+    public class ChaosCapabilityFactory {
+        public static Capability loadCapability(String capName) {
+            Capability cap = null ;
 
-    //     public static Capability Create(string name, bool enabled) {
-    //         Capability cap = null;
-    //         switch (name) {
-    //             case "changeDestination":
-    //                 cap = new changeDestination();
-    //                 break;
-    //         }
-    //         return cap;
-    //     }
-    // }
+            switch (capName) {
+                case "ChaosCap_ChangeDestination":
+                    cap = new ChaosCap_ChangeDestination();
+                    break;
+                case "ChaosCap_ChangeTarget":
+                    cap = new ChaosCap_ChangeTarget();
+                    break;
+                default:
+                    Debug.Log("Capability not found");
+                    break;
+            }
+            return cap;
+        }
+    }
 
     public class Capability {
 
+        public string name = "";
+
         protected bool enabled = true;
 
-        // public void Initialise(Agents.AwareAgent agent) {
-
-        // }
-
-        public void CollectObservations(State StateSpace,  VectorSensor sensor) {
+        public virtual void InitialiseCap(ChaosAgent agent) {
 
         }
 
+        public virtual void CollectObservations(State StateSpace,  VectorSensor sensor) {
+
+        }
         public void disable() {
         enabled = false;
         }
@@ -42,64 +50,64 @@ namespace Capabilities
         public void enable() {
         enabled = false;
         }
+
     }
 
-    public class ChaosCap_ChangeDestination: Capability {
 
-        // public void override Initialise(Agent agent) {
-        //     agent.capabilities["ChaosCap_ChangeDestination"].disable();
-        //     }
-        private string name = "changeDestination";
+    public class ChaosCap_ChangeDestination:Capability {
+
+        public string name = "ChaosCap_ChangeDestination";
+
+        public override void InitialiseCap(ChaosAgent agent) {
+            Debug.Log(name + " capability added");
+            }
+
         private bool enabled = true;
-        public void run() {
-
-
-            Debug.Log("destination changed");
+        public override void CollectObservations(State state, VectorSensor sensor) {
+            Debug.Log("Collecting observations for " + name);
+        }
+         public void disable() {
+        enabled = false;
         }
 
+        public void enable() {
+        enabled = false;
+        }
     } 
 
-    public class ChaosCapabilityFactory {
-        public static Capability loadCapability(String capName) {
-            Capability cap = null;
-            switch (capName) {
-                case "ChaosCap_ChangeDestination":
-                cap = new ChaosCap_ChangeDestination();
-                break;
-                }
-                return cap;
+
+    public class ChaosCap_ChangeTarget:Capability {
+
+        public string name = "ChaosCap_ChangeTarget";
+
+        public override void InitialiseCap(ChaosAgent agent) {
+            Debug.Log(name + " capability added");
             }
-    }
 
-    // class changeDestination : Capability{
+        private bool enabled = true;
+        public override void CollectObservations(State state, VectorSensor sensor) {
+            Debug.Log("Collecting observations for " + name);
+        }
+         public void disable() {
+        enabled = false;
+        }
 
-    //     private string name = "changeDestination";
-    //     private bool enabled = true;
+        public void enable() {
+        enabled = false;
+        }
+    } 
 
-    //     public void run() {
-    //         Debug.Log("destination changed");
-    //     }
 
-    // }
-    // class changeDestination2 : Capability{
 
-    //     private string name = "changeDestination";
-    //     private bool enabled = true;
-
-    //     public void run() {
-    //         Debug.Log("destination changed");
-    //     }
-
-    // }
-
+    
 
     public class DestInfo : Capability {
 
         protected bool enabled = true;
 
-        // public override Initialise (Agent agent) {
-
-        // }
+        public override void InitialiseCap (ChaosAgent agent) {
+            agent.ChaosCaps["DestInfo"].disable();
+        }
 
         private float calculateDistance (State state) {
         // ...
@@ -110,7 +118,15 @@ namespace Capabilities
         if (this.enabled){
             float distance = calculateDistance(state);
             sensor.AddObservation(distance);
+            }
         }
+
+        public void disable() {
+        enabled = false;
+        }
+
+        public void enable() {
+        enabled = false;
         }
     }
 

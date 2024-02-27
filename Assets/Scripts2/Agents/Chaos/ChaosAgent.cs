@@ -26,8 +26,7 @@ public class ChaosAgent : Agent
     // capabilities
 
 
-    public Dictionary < string, Capabilities.Capability > caps;
-
+    public Dictionary <string, Capabilities.Capability> ChaosCaps = new Dictionary<string, Capabilities.Capability>();
 
     public void Start() {
 
@@ -38,7 +37,7 @@ public class ChaosAgent : Agent
 
         Env = GameObject.FindGameObjectWithTag("map");
         // Specify the path to your JSON file
-        string filePath = "DroneConfig.json";
+        string filePath = "Assets/Scripts2/Agents/Chaos/ChaosConfig.json";
 
         // Create a new ChaosConfig object
         config = new ChaosConfig(filePath);
@@ -54,21 +53,27 @@ public class ChaosAgent : Agent
         foreach (string item in config.capabilities)
         {
             Capability cap = ChaosCapabilityFactory.loadCapability(item);
-            Debug.Log(item + " capability added");
-        }
 
+            if (cap != null) {
+                ChaosCaps[item] = cap;
+                cap.InitialiseCap(this);
+            } else {
+                Debug.Log("Capability not found");
+            } 
+        }
+        
     }
+
     public override void OnEpisodeBegin()
     {
          Env = GameObject.FindGameObjectWithTag("map");
         // Specify the path to your JSON file
-        string filePath = "DroneConfig.json";
+        //string filePath = "DroneConfig.json";
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-
-        foreach(Capabilities.Capability cap in caps.Values) {
+        foreach(Capabilities.Capability cap in ChaosCaps.Values) {
             cap.CollectObservations(statespace, sensor);
         }
     }
