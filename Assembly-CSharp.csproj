@@ -40,9 +40,11 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.10f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets/Scripts2/Agents/Drone/UAVAgent.cs" />
      <Compile Include="Assets/Scripts/ChargeStation.cs" />
      <Compile Include="Assets/Scripts2/ConfigManager.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/Turnable.cs" />
+     <Compile Include="Assets/Scripts2/Configs.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/PAVR_3DJoystick.cs" />
      <Compile Include="Assets/Scripts/gridSensor.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/PA_DroneController.cs" />
@@ -50,17 +52,19 @@
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/ProximityCannon.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/PA_DroneAxisInput.cs" />
      <Compile Include="Assets/Scripts2/Utill.cs" />
-     <Compile Include="Assets/Scripts2/Agents/UAVAgent.cs" />
      <Compile Include="Assets/ProfessionalAssets/UIPack/Scripts/PAUI_Joystick.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/NightLights.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/ColliderProxy.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/LevelManager.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/CameraTeleportEffect.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/PAVR_DroneRemote.cs" />
+     <Compile Include="Assets/Scripts2/Agents/Chaos/ChaosAgent.cs" />
+     <Compile Include="Assets/Scripts2/Agents/Chaos/StateSpace.cs" />
      <Compile Include="Assets/Scripts/LogisticsAcademy.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/EnviromentLighting.cs" />
      <Compile Include="Assets/Scripts2/Env.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/DroneDistanceLimit.cs" />
+     <Compile Include="Assets/Scripts2/Agents/Chaos/Capabilities.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/SoccerGame.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/Turbine.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/DroneSelection.cs" />
@@ -68,7 +72,6 @@
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/WebGLHideMouse.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/PA_ObjectID.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/LookAt.cs" />
-     <Compile Include="Assets/Scripts2/Agents/ChaosAgent.cs" />
      <None Include="Assets/ProfessionalAssets/DronePack/Shaders/StandardSpecular [DoubleSided].shader" />
      <None Include="Assets/ProfessionalAssets/DronePack/Shaders/StandardShader [DoubleSided].shader" />
      <None Include="Assets/ProfessionalAssets/DronePack/Shaders/UFOAnimated.shader" />
@@ -743,11 +746,11 @@
     <Reference Include="Unity.Timeline.Editor">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.ML-Agents.Editor">
-        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.ML-Agents.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Barracuda.iOSBLAS">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.Barracuda.iOSBLAS.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ML-Agents.Editor">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.ML-Agents.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

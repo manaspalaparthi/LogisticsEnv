@@ -304,11 +304,17 @@
     <Reference Include="UnityEditor.OSXStandalone.Extensions">
         <HintPath>/Applications/Unity/Hub/Editor/2022.3.10f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO.Abstractions">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/PackageCache/com.unity.ml-agents@2.0.1/Plugins/System.IO.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="PA_DronePack">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Assets/ProfessionalAssets/DronePack/Scripts/cmpl/PA_DronePack.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/PackageCache/com.unity.collab-proxy@2.0.7/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Interactive.Async">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/PackageCache/com.unity.ml-agents@2.0.1/Plugins/ProtoBuffer/System.Interactive.Async.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/PackageCache/com.unity.collab-proxy@2.0.7/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll</HintPath>
@@ -318,6 +324,15 @@
     </Reference>
     <Reference Include="PA_DronePackEditor">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Assets/ProfessionalAssets/DronePack/Editor/cmpl/PA_DronePackEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/PackageCache/com.unity.barracuda@3.0.0/Barracuda/Runtime/Plugins/ProtoBuffer/Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Grpc.Core">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/PackageCache/com.unity.ml-agents@2.0.1/Plugins/ProtoBuffer/Grpc.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Abstractions.TestingHelpers">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/PackageCache/com.unity.ml-agents@2.0.1/Plugins/System.IO.Abstractions.TestingHelpers.dll</HintPath>
     </Reference>
     <Reference Include="unityplastic">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/PackageCache/com.unity.collab-proxy@2.0.7/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
@@ -712,11 +727,29 @@
     <Reference Include="Unity.AI.Navigation">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.AI.Navigation.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Burst.Editor">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Barracuda.ONNX">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.Barracuda.ONNX.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Barracuda.MacBLAS">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.Barracuda.MacBLAS.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Timeline.Editor">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Barracuda.iOSBLAS">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.Barracuda.iOSBLAS.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ML-Agents.Editor">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.ML-Agents.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
@@ -727,8 +760,17 @@
     <Reference Include="UnityEngine.UI">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Barracuda">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.Barracuda.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Rider.Editor">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Barracuda.BurstBLAS">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.Barracuda.BurstBLAS.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
@@ -739,11 +781,23 @@
     <Reference Include="Unity.AI.Navigation.Updater">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.AI.Navigation.Updater.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ML-Agents">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.ML-Agents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ML-Agents.CommunicatorObjects">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.ML-Agents.CommunicatorObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Barracuda.Editor">
+        <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.Barracuda.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.AI.Navigation.Editor">
         <HintPath>/Users/manas/Documents/GitHub/DroneSearchRescue2.0/Library/ScriptAssemblies/Unity.AI.Navigation.Editor.dll</HintPath>

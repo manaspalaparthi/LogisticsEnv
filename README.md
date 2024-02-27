@@ -1,5 +1,5 @@
-## UAV Logistics Environment for MLRL
-This **UAV Logistics Environment** with a continuous observation and discrete action space, along with **physical based UAVs** and parcels which powered by Unity Engine. Used in Paper ["Multiagent Reinforcement Learning Based on Fusion-Multiactor-Attention-Critic for Multiple-Unmanned-Aerial-Vehicle Navigation Control"](https://www.mdpi.com/1996-1073/15/19/7426)(MDPI Energies 2022, 15(19), 7426 (SCIE), 2022.10.10.) and ["Multi-agent Reinforcement Learning-Based UAS Control for Logistics EnvironmentsMulti-agent Reinforcement Learning-Based UAS Control for Logistics Environments"](https://link.springer.com/chapter/10.1007/978-981-19-2635-8_71)(Springer LNEE, volume 913 (SCOPUS). 2022.09.30.)
+## UAV Search and Rescue Environment for MLRL
+
 
 ### Requirements
 
@@ -9,16 +9,7 @@ This **UAV Logistics Environment** with a continuous observation and discrete ac
 - [`tensorboard`](https://github.com/tensorflow/tensorboard) (compatible to PyTorch version)
 - [OpenAI `gym`](https://github.com/openai/gym), version 0.15.7
 - [Unity `mlagents`](https://github.com/Unity-Technologies/ml-agents), version 0.27.0 (Release 18)
-<br>
 
-### My Environments
-- Ubuntu 20.04 LTS / Python 3.8.10 / Anaconda 3.1 (Virtual Environment)
-- NVIDIA GeForce RTX 3070 / Intel(R) Core(TM) i5-10400F (@2.90GHz) / 32GB Memory (RAM)
-- CUDA 11.1 / [CuDNN 8.1.1](https://developer.nvidia.com/rdp/cudnn-archive#a-collapse811-111)
-- `torch 1.8.2+cu111` / `torchaudio 0.8.2` / `torchvision 0.9.2+cu111`
-- It took 13.9 days to train MAAC model with 150K episodes.
-
-<br>
 
 **Unity Editor**
 
@@ -37,22 +28,7 @@ This **UAV Logistics Environment** with a continuous observation and discrete ac
 - `python main.py` to run training
 - To replay with your trained model, set path to the `model.pt` on `replay.py` and `python replay.py` to replay
 
-**Tensorboard**
 
-- `MAAC/models/Logistics/MAAC/` or `MADDPG/models/Logistics/MADDPG`
-- `tensorboard --logdir=runX`
-- open `localhost:6006`
-
-**Parcel Counter**
-
-- `MAAC/CSV/countXXXX.csv` : number of successfully shipped parcel is written in this csv file. (XXXX must be yyyyMMddHHmmss of training start time)
-- first row is number of small box, second is number of big box, third is sum of both.
-
-**Timer**
-
-- `MAAC/CSV/timerXXXX.csv` : spent time to finish shipping given boxes. (finishing condigion follows `max_smallbox` and `max_bigbox` parameters) 
-- if UAVs failed to ship all of given parcels, a time-written line will be not appended. 
-- the line is milli-second. (1Kms is a second)
 
 <br>
 
@@ -65,45 +41,9 @@ This **UAV Logistics Environment** with a continuous observation and discrete ac
 
 <br>
 
-### Used Algorithm
-- [Multi-Actor-Attention-Ctritic](https://github.com/shariqiqbal2810/MAAC) (MAAC) 
-from [Actor-Attention-Critic for Multi-Agent Reinforcement Learning](https://arxiv.org/abs/1810.02912)  (Iqbal and Sha, ICML 2019)
-- [Multi-Agent DDPG](https://github.com/shariqiqbal2810/maddpg-pytorch) (MADDPG)
-
-<br>
-
-### Python API
-**Gym Functions**
-
-This Logistics Environment follows [OpenAI Gym](https://github.com/openai/gym) API design :
-
-- `from UnityGymWrapper5 import GymEnv` - import class (newest version is Wrapper5)
-- `env = GymEnv(name="path to Unity Environment", ...)` - Returns wrapped environment object.
-- `obs = reset()` - Resets environment to the initial state. Returns initial observation.
-- `obs, reward, done, info = step(actions)` - A single step. Require actions, returns observation, reward, done, information list.
-
-**example**
-```python
-from UnityGymWrapper5 import GymEnv # Unity Gym Style Wrapper
-env = GymEnv(name="../Build_Linux/Logistics") # Call Logistics Environment
-done, obs = False, env.reset() # reset Environment
-
-while not done:
-    actions = get_actions(obs) # get actions
-    next_obs, reward, done, info = env.step(actions) # next step
-    obs = next_obs
-```
-<br>
-
-**Unity Gym Wrapper**
-This Wrapper can wrap Unity ML-Agents Environment (API version 2.1.0 exp1, mlagents version 0.27.0) which has multiple Discrete-Action-Agent.
-
-GymWrapper provided by Unity supports only single agent environment.
-[UnityGymWrapper5.py](https://github.com/dmslab-konkuk/LogisticsEnv/blob/main/MAAC/UnityGymWrapper5.py) is in Github Repository.
-<br>
 
 **Parameter Configurations**
-`env = GymEnv(name='', width=0, height=0, ...)`
+`EnvConfig`
 
 - `width` : Defines the width of the display. (Must be set alongside height)
 - `height` : Defines the height of the display. (Must be set alongside width)
@@ -113,9 +53,6 @@ GymWrapper provided by Unity supports only single agent environment.
 - `capture_frame_rate` : Instructs the simulation to consider time between updates to always be constant, regardless of the actual frame rate.
 - `name` : path to Unity Built Environment (ex : `../Build_Linux/Logistics`)
 - `mapsize` : size of map in virtual environment (x by x)
-- `numbuilding` : number of buildings (obstacle)
-- `max_smallbox` : max number of small box will be generated
-- `max_bigbox` : max number of big box will be generated
 
 <br>
 
