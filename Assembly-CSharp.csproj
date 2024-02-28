@@ -53,6 +53,7 @@
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/PA_DroneAxisInput.cs" />
      <Compile Include="Assets/Scripts2/Utill.cs" />
      <Compile Include="Assets/ProfessionalAssets/UIPack/Scripts/PAUI_Joystick.cs" />
+     <Compile Include="Assets/Scripts2/Agents/Chaos/Action.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/NightLights.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/ColliderProxy.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/LevelManager.cs" />

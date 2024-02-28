@@ -36,11 +36,11 @@ namespace Capabilities
 
         protected bool enabled = true;
 
-        public virtual void InitialiseCap(ChaosAgent agent) {
+        public virtual void InitialiseCap(Agent agent) {
 
         }
 
-        public virtual void CollectObservations(State StateSpace,  VectorSensor sensor) {
+        public virtual void CollectObservations(List<Agent> agents, VectorSensor sensor) {
 
         }
         public void disable() {
@@ -54,16 +54,16 @@ namespace Capabilities
     }
 
 
-    public class ChaosCap_ChangeDestination:Capability {
+    public class EnvInfo:Capability {
 
         public string name = "ChaosCap_ChangeDestination";
 
-        public override void InitialiseCap(ChaosAgent agent) {
+        public override void InitialiseCap(Agent agent) {
             Debug.Log(name + " capability added");
             }
 
         private bool enabled = true;
-        public override void CollectObservations(State state, VectorSensor sensor) {
+        public override void CollectObservations(List<Agent> agents, VectorSensor sensor) {
             Debug.Log("Collecting observations for " + name);
         }
          public void disable() {
@@ -76,18 +76,48 @@ namespace Capabilities
     } 
 
 
-    public class ChaosCap_ChangeTarget:Capability {
+    public class TargetInfo:Capability {
+
+        public string name = "TargetInfo";
+
+        public override void InitialiseCap(Agent agent) {
+            Debug.Log(name + " capability added");
+            }
+
+        private bool enabled = true;
+        public override void CollectObservations(List<Agent> agents, VectorSensor sensor) {
+
+            GameObject Env = GameObject.FindGameObjectWithTag("map");
+            // Add the number of targets to the state space
+            sensor.AddObservation(Env.smallBoxSuccCount);
+        
+        }
+         public void disable() {
+        enabled = false;
+        }
+
+        public void enable() {
+        enabled = false;
+        }
+    } 
+
+
+    public class AgentRewardInfo :Capability {
 
         public string name = "ChaosCap_ChangeTarget";
 
-        public override void InitialiseCap(ChaosAgent agent) {
+        public override void InitialiseCap(Agent agent) {
             Debug.Log(name + " capability added");
             }
 
         private bool enabled = true;
-        public override void CollectObservations(State state, VectorSensor sensor) {
-            Debug.Log("Collecting observations for " + name);
-        }
+
+        public override void CollectObservations(List<Agent> agents, VectorSensor sensor) {
+              foreach (Agent agent in agents)
+                Debug.Log("Agent reward: " + agent.GetCumulativeReward());
+                sensor.AddObservation(agent.GetCumulativeReward());
+            }
+        
          public void disable() {
         enabled = false;
         }
@@ -97,37 +127,5 @@ namespace Capabilities
         }
     } 
 
-
-
-    
-
-    public class DestInfo : Capability {
-
-        protected bool enabled = true;
-
-        public override void InitialiseCap (ChaosAgent agent) {
-            agent.ChaosCaps["DestInfo"].disable();
-        }
-
-        private float calculateDistance (State state) {
-        // ...
-        return 0f;
-        }
-
-        public void CollectObservations(State state, VectorSensor sensor) {
-        if (this.enabled){
-            float distance = calculateDistance(state);
-            sensor.AddObservation(distance);
-            }
-        }
-
-        public void disable() {
-        enabled = false;
-        }
-
-        public void enable() {
-        enabled = false;
-        }
-    }
-
 }
+

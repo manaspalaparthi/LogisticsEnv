@@ -8,10 +8,13 @@ namespace Configs
 {
    public class ChaosConfig {
        public string name;
+       public List<string> type;
        public List<string> State;
        public List<string> SharedState;
+       public List<string> TargetAgentTeam;
        public List<string> capabilities;
-
+       public List<string> Actions;
+      
          public ChaosConfig(string filePath) {
 
             // Read the JSON file as a string
@@ -23,6 +26,9 @@ namespace Configs
             this.State = config.State;
             this.SharedState = config.SharedState;
             this.capabilities = config.capabilities;
+            this.Actions = config.Actions;
+            this.TargetAgentTeam = config.TargetAgentTeam;
+            this.type = config.type;
          }
     }
 
@@ -30,6 +36,8 @@ namespace Configs
         public string name;
         public List<string> State;
         public List<string> SharedState;
+        public List<string> capabilities;
+        public List<string> Actions;
 
         public UAVConfig(string filePath) {
 
@@ -41,6 +49,9 @@ namespace Configs
         this.name = config.name;
         this.State = config.State;
         this.SharedState = config.SharedState;
+        this.capabilities = config.capabilities;
+        this.Actions = config.Actions;
+        
          }
     }
 

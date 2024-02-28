@@ -1,5 +1,7 @@
 {
-    "name":"ChoasAgent",
-    "State": ["startPos","pos"],
-    "capabilities" : ["ChaosCap_ChangeDestination", "ChaosCap_ChangeTarget"]
+    "name":"ChaosAgent",
+    "type":"ChaosAgent",
+    "TargetAgentTeam":"uav",
+    "capabilities" : ["Envinfo", "AgentTargetInfo","AgentDestInfo", "AgentRewardInfo"],
+    "Actions" : ["ChaosCap_ChangeDestination", "ChaosCap_ChangeTarget"]
 }
