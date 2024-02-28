@@ -23,7 +23,7 @@ namespace ActionCapabilities
                     cap = new ChaosCap_ChangeTarget();
                     break;
                 default:
-                    Debug.Log("Capability not found");
+                    Debug.Log(capName + " action not found");
                     break;
             }
             return cap;
@@ -40,7 +40,7 @@ namespace ActionCapabilities
         public virtual void InitialiseCap(ChaosAgent agent) {
 
         }
-        public virtual void Action(State StateSpace,  VectorSensor sensor) {
+        public virtual void Action(List<Agent> agents, VectorSensor sensor) {
 
         }
         public void disable() {
@@ -58,11 +58,11 @@ namespace ActionCapabilities
         public string name = "ChaosCap_ChangeDestination";
 
         public override void InitialiseCap(ChaosAgent agent) {
-            Debug.Log(name + " capability added");
+            Debug.Log(name + " action added");
             }
 
         private bool enabled = true;
-        public override void Action(State state, VectorSensor sensor) {
+        public override void Action(List<Agent> agents, VectorSensor sensor) {
             Debug.Log("Collecting observations for " + name);
         }
          public void disable() {
@@ -80,11 +80,11 @@ namespace ActionCapabilities
         public string name = "ChaosCap_ChangeTarget";
 
         public override void InitialiseCap(ChaosAgent agent) {
-            Debug.Log(name + " capability added");
+            Debug.Log(name + " Action  added");
             }
 
         private bool enabled = true;
-        public override void Action(State state, VectorSensor sensor) {
+        public override void Action(List<Agent> agents, VectorSensor sensor) {
             Debug.Log("Collecting observations for " + name);
         }
          public void disable() {

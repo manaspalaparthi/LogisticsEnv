@@ -11,7 +11,8 @@ namespace Configs
        public List<string> type;
        public List<string> State;
        public List<string> SharedState;
-       public List<string> TargetAgentTeam;
+
+       public string TargetAgentTeam;
        public List<string> capabilities;
        public List<string> Actions;
       
@@ -51,7 +52,7 @@ namespace Configs
         this.SharedState = config.SharedState;
         this.capabilities = config.capabilities;
         this.Actions = config.Actions;
-        
+
          }
     }
 

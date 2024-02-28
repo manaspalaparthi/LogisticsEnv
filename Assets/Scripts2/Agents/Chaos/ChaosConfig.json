@@ -2,6 +2,6 @@
     "name":"ChaosAgent",
     "type":"ChaosAgent",
     "TargetAgentTeam":"uav",
-    "capabilities" : ["Envinfo", "AgentTargetInfo","AgentDestInfo", "AgentRewardInfo"],
+    "capabilities" : ["EnvInfo", "AgentTargetInfo","AgentDestInfo", "AgentRewardInfo"],
     "Actions" : ["ChaosCap_ChangeDestination", "ChaosCap_ChangeTarget"]
 }

@@ -12,6 +12,7 @@ using System.IO;
 using Spaces;
 using Configs;
 using Capabilities;
+using ActionCapabilities;
 
 public class ChaosAgent : Agent
 {
@@ -24,10 +25,12 @@ public class ChaosAgent : Agent
     private ChaosConfig config;
 
     // capabilities
-
-
     public Dictionary <string, Capabilities.Capability> ChaosCaps = new Dictionary<string, Capabilities.Capability>();
 
+    // actions
+    public Dictionary <string, ActionCapabilities.ActionCapability> ChaosActions = new Dictionary<string, ActionCapabilities.ActionCapability>();
+
+    public List<Agent> TargetAgents = null;
     public void Start() {
 
     }
@@ -61,7 +64,25 @@ public class ChaosAgent : Agent
                 Debug.Log("Capability not found");
             } 
         }
-        
+
+        // load actions from the config file
+        foreach (string item in config.Actions)
+        {
+            ActionCapability cap = ChaosActionFactory.loadAction(item);
+
+            if (cap != null) {
+                ChaosActions[item] = cap;
+                cap.InitialiseCap(this);
+            } else {
+                Debug.Log("Action not found");
+            } 
+        }
+
+        // Get all agents in the scene based on the tag
+        GameObject[] AgentGameObject = GameObject.FindGameObjectsWithTag(config.TargetAgentTeam);
+         foreach (GameObject agent in AgentGameObject) {
+                TargetAgents.Add(agent.GetComponent<UAVAgent>());
+            }
     }
 
     public override void OnEpisodeBegin()
@@ -74,7 +95,7 @@ public class ChaosAgent : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
         foreach(Capabilities.Capability cap in ChaosCaps.Values) {
-            cap.CollectObservations(statespace, sensor);
+            cap.CollectObservations(TargetAgents, sensor);
         }
     }
 
