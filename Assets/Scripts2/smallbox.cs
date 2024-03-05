@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PA_DronePack;
-
+using DroneAgent;
 public class smallbox: MonoBehaviour
 {
     public GameObject UAV;
@@ -30,6 +30,8 @@ public class smallbox: MonoBehaviour
             gameObject.transform.position = uavPos;
             UAV.GetComponent<UAVAgent>().statespace.boxPos = gameObject.transform.position;
         }
+
+
 
         /*if (UAV) {
             if (!UAV.GetComponent<UAVAgent>().isHold) {
@@ -76,7 +78,8 @@ public class smallbox: MonoBehaviour
 
         if (other.gameObject.CompareTag("destination"))
         {
-            if (destPos == other.transform.position && other.gameObject.name.Contains("small_dest")) {
+            if (isHold){
+                if (destPos == other.transform.position && other.gameObject.name.Contains("small_dest")) {
                 isHold = false;
                 UAV.GetComponent<UAVAgent>().statespace.isHold = false;
                 UAV.GetComponent<UAVAgent>().statespace.boxType = 0;
@@ -86,6 +89,7 @@ public class smallbox: MonoBehaviour
                 //Destroy(GameObject.Find(other.gameObject.name));
                 Env.GetComponent<Env>().world[dx, dz] = 0;
                 Env.GetComponent<Env>().smallBoxSuccCount++;
+                }
             }
         }
     }

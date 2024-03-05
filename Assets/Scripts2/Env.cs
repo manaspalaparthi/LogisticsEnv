@@ -5,9 +5,8 @@ using UnityEngine;
 using System.IO;
 using System.Diagnostics;
 using Unity.MLAgents;
-
-
 using PA_DronePack;
+using DroneAgent;
 public class Env : MonoBehaviour
 {
     public int maxSmallBoxNum;
@@ -56,6 +55,10 @@ public class Env : MonoBehaviour
 
     public int episode = -1;
 
+    public int UAVAgents;
+
+    public LogisticsAcademy academy;
+
     Stopwatch stopwatch = new Stopwatch();
 
     public int maxsteps = 10000;
@@ -85,7 +88,11 @@ public class Env : MonoBehaviour
     }
     public void InitWorld(int ms, int nb, int slimit, int steps, int UAVAgents) {
 
-   
+
+        // Academy instance
+
+        academy = gameObject.GetComponent<LogisticsAcademy>();
+
         // start stopwatch
         stopwatch.Reset();
 
@@ -105,6 +112,8 @@ public class Env : MonoBehaviour
         smallBoxSuccCount = 0;
       
         maxSmallBoxNum = slimit;
+
+        UAVAgents = UAVAgents;
 
         seconds = 0f;
         writelock = false;
@@ -245,6 +254,15 @@ public class Env : MonoBehaviour
             EndEpisode();
             //SpawnSmallBoxsRandom(maxSmallBoxNum);
         }
+        
+        if (stopwatch.ElapsedMilliseconds > maxsteps) {
+            // reset the environment through the academy
+
+            academy.EnvironmentReset();
+
+            UnityEngine.Debug.Log("Reset Environment");
+            
+        }
     }
 
     public void NumberCheck() {
@@ -325,6 +343,7 @@ public class Env : MonoBehaviour
         GameObject[] uavs = GameObject.FindGameObjectsWithTag("uav");
         foreach (GameObject uav in uavs)
         {
+            uav.GetComponent<UAVAgent>().OnEpisodeBegin();
             uav.transform.position = GenerateUAVPosition();
         }
     }

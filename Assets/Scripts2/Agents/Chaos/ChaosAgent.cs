@@ -13,6 +13,7 @@ using Spaces;
 using Configs;
 using Capabilities;
 using ActionCapabilities;
+using DroneAgent;
 
 public class ChaosAgent : Agent
 {
@@ -31,6 +32,7 @@ public class ChaosAgent : Agent
     public Dictionary <string, ActionCapabilities.ActionCapability> ChaosActions = new Dictionary<string, ActionCapabilities.ActionCapability>();
 
     public List<Agent> TargetAgents = null;
+
     public void Start() {
 
     }
@@ -65,6 +67,7 @@ public class ChaosAgent : Agent
             } 
         }
 
+
         // load actions from the config file
         foreach (string item in config.Actions)
         {
@@ -76,13 +79,18 @@ public class ChaosAgent : Agent
             } else {
                 Debug.Log("Action not found");
             } 
+
         }
 
         // Get all agents in the scene based on the tag
         GameObject[] AgentGameObject = GameObject.FindGameObjectsWithTag(config.TargetAgentTeam);
-         foreach (GameObject agent in AgentGameObject) {
-                TargetAgents.Add(agent.GetComponent<UAVAgent>());
-            }
+
+        TargetAgents = new List<Agent>();
+
+        foreach (GameObject agent in AgentGameObject) {
+            TargetAgents.Add(agent.GetComponent<Agent>());
+        }
+
     }
 
     public override void OnEpisodeBegin()
@@ -100,19 +108,46 @@ public class ChaosAgent : Agent
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
-    {   
+    {  
+        //map the actionbuffer to the action capability
         
+        // foreach (string action in actionBuffers.DiscreteActions) {
+        //     Debug.Log("Action: " + action);
+        //     ChaosActions[action].Action(TargetAgents, actionBuffers);
+        // }
+
     }
 
     // Player Heuristic Controll
     public override void Heuristic(in ActionBuffers actionsOut)
     {
-        
+
+        var discreteActionsOut = actionsOut.DiscreteActions;
+    
+    
+        if (Input.GetKey(KeyCode.W)) {
+            discreteActionsOut[0] = 1;
+            ChaosActions["ChaosCap_ChangeDestination"].Action(TargetAgents, actionsOut);
+        }
+        if (Input.GetKey(KeyCode.E)) {
+            discreteActionsOut[1] = 1;
+            ChaosActions["ChaosCap_ChangeTarget"].Action(TargetAgents, actionsOut);
+        }
+        if (Input.GetKey(KeyCode.R)) {
+            discreteActionsOut[2] = 1;
+            ChaosActions["ChaosCap_ChangecollideCount"].Action(TargetAgents, actionsOut);
+        }
+        if (Input.GetKey(KeyCode.T)) {
+            discreteActionsOut[3] = 1;
+            ChaosActions["ChaosCap_DropTarget"].Action(TargetAgents, actionsOut);
+        }
+    
+
     }
 
     // Give Reward to this UAV at outside
     public void GiveReward(float reward)
-    {
+    {   
         AddReward(reward);
     }
 
@@ -122,17 +157,28 @@ public class ChaosAgent : Agent
 
     protected override void OnEnable()
     {
+
+        Initialize();
+
         BehaviorParameters behaviorParameters = gameObject.GetComponent<BehaviorParameters>();
+        
+        int [] DiscreteActions = new int[ChaosActions.Count];
+
+        for (int i = 0; i < ChaosActions.Count; i++)
+        {
+            DiscreteActions[i] = 1;
+        }
 
         if (behaviorParameters != null)
         {
             behaviorParameters.BrainParameters.VectorObservationSize = 30;
+
+            behaviorParameters.BrainParameters.ActionSpec =  ActionSpec.MakeDiscrete(DiscreteActions);
+
         }
 
         base.OnEnable();
-    
     }
-
 
 }
 

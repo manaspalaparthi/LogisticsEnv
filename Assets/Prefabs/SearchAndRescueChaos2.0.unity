@@ -1623,6 +1623,14 @@ PrefabInstance:
       value: UAV1
       objectReference: {fileID: 0}
     - target: {fileID: 2012244626603207255, guid: c525b833560af49a3996cf4b62bb00de, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 4a68b6db233e0427480d71109dff3d9d, type: 3}
+    - target: {fileID: 2012244626603207255, guid: c525b833560af49a3996cf4b62bb00de, type: 3}
+      propertyPath: m_BehaviorType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012244626603207255, guid: c525b833560af49a3996cf4b62bb00de, type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
       value: 43
       objectReference: {fileID: 0}

@@ -18,9 +18,9 @@ public class LogisticsAcademy : MonoBehaviour
         Academy.Instance.OnEnvironmentReset += EnvironmentReset;
         var envParams = Academy.Instance.EnvironmentParameters;
 
-        mapsize = (int)(envParams.GetWithDefault("mapsize", 30f)); // map size
+        mapsize = (int)(envParams.GetWithDefault("mapsize", 20f)); // map size
         numbuilding = (int)(envParams.GetWithDefault("building_num", 0f)); // number of buildings
-        slimit = (int)(envParams.GetWithDefault("slimit", 2f)); // 
+        slimit = (int)(envParams.GetWithDefault("slimit", 10f)); // 
         //maxstep = (int)(envParams.GetWithDefault("maxsteps", 10000f)); // 
         UAVAgents = (int)(envParams.GetWithDefault("uavagents", 5f)); //
     }

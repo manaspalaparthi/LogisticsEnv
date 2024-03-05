@@ -58,8 +58,8 @@
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/ColliderProxy.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/LevelManager.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/CameraTeleportEffect.cs" />
-     <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/PAVR_DroneRemote.cs" />
      <Compile Include="Assets/Scripts2/Agents/Chaos/ChaosAgent.cs" />
+     <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/PAVR_DroneRemote.cs" />
      <Compile Include="Assets/Scripts2/Agents/Chaos/StateSpace.cs" />
      <Compile Include="Assets/Scripts/LogisticsAcademy.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/EnviromentLighting.cs" />

@@ -7,6 +7,7 @@ using UnityEngine;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents;
 using Spaces;
+using DroneAgent;
 
 namespace Capabilities
 {
@@ -46,6 +47,7 @@ namespace Capabilities
 
         }
 
+        // target Agents
         public virtual void CollectObservations(List<Agent> agents, VectorSensor sensor) {
 
         }
@@ -70,7 +72,7 @@ namespace Capabilities
 
         private bool enabled = true;
         public override void CollectObservations(List<Agent> agents, VectorSensor sensor) {
-            Debug.Log("Collecting observations for " + name);
+          
         }
          public void disable() {
         enabled = false;
@@ -117,11 +119,12 @@ namespace Capabilities
             }
 
         private bool enabled = true;
+
+       
         public override void CollectObservations(List<Agent> agents, VectorSensor sensor) {
 
-            foreach (Agent agent in agents){
-                Debug.Log("Agent destinationPos: " + agent);
-                //sensor.AddObservation(agent.statespace.destinationPos);
+            foreach (UAVAgent agent in agents){
+                sensor.AddObservation(agent.statespace.destinationPos);
             }
         
         }
@@ -146,8 +149,7 @@ namespace Capabilities
         private bool enabled = true;
 
         public override void CollectObservations(List<Agent> agents, VectorSensor sensor) {
-              foreach (Agent agent in agents){
-                Debug.Log("Agent reward: " + agent.GetCumulativeReward());
+              foreach (UAVAgent agent in agents){
                 sensor.AddObservation(agent.GetCumulativeReward());
             }
             }
