@@ -3,5 +3,5 @@
     "type":"ChaosAgent",
     "TargetAgentTeam":"uav",
     "capabilities" : ["EnvInfo", "AgentTargetInfo","AgentDestInfo", "AgentRewardInfo"],
-    "Actions" : ["ChaosCap_ChangeDestination", "ChaosCap_ChangeTarget", "ChaosCap_ChangecollideCount", "ChaosCap_DropTarget"]
+    "Actions" : ["ChaosCap_WindEffect"]
 }

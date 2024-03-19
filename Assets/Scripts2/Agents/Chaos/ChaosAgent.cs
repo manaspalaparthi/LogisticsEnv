@@ -29,15 +29,18 @@ public class ChaosAgent : Agent
     public Dictionary <string, Capabilities.Capability> ChaosCaps = new Dictionary<string, Capabilities.Capability>();
 
     // actions
-    public Dictionary <string, ActionCapabilities.ActionCapability> ChaosActions = new Dictionary<string, ActionCapabilities.ActionCapability>();
+    public Dictionary <string, ActionCapabilities.ActionCapability > ChaosActions = new Dictionary<string, ActionCapabilities.ActionCapability>();
 
     public List<Agent> TargetAgents = null;
+
+    public int ContinuousActionSize = 0;
+    public int DiscreteActionSize = 0;
 
     public void Start() {
 
     }
 
-    public override void Initialize()
+    public  void Initializer()
     {
 
         Env = GameObject.FindGameObjectWithTag("map");
@@ -67,15 +70,25 @@ public class ChaosAgent : Agent
             } 
         }
 
-
-        // load actions from the config file
+        // load Chaos actions from the config file
         foreach (string item in config.Actions)
         {
-            ActionCapability cap = ChaosActionFactory.loadAction(item);
+            ActionCapability cap = new ActionCapability();
+            
+            cap = ChaosActionFactory.loadAction(item);
 
             if (cap != null) {
-                ChaosActions[item] = cap;
-                cap.InitialiseCap(this);
+                ChaosActions[item] = cap ;
+                cap = cap.InitialiseCap(this);
+
+                if (cap.actionType == "Discrete") {
+                    DiscreteActionSize = DiscreteActionSize + cap.actionSize;
+                } else if (cap.actionType == "Continuous") {
+                    ContinuousActionSize = ContinuousActionSize + cap.actionSize;
+                }
+
+                Debug.Log("Action added: " + cap.name + " " + cap.actionType + " " + cap.actionSize);
+
             } else {
                 Debug.Log("Action not found");
             } 
@@ -109,6 +122,8 @@ public class ChaosAgent : Agent
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {  
+
+
         //map the actionbuffer to the action capability
         
         // foreach (string action in actionBuffers.DiscreteActions) {
@@ -141,7 +156,10 @@ public class ChaosAgent : Agent
             discreteActionsOut[3] = 1;
             ChaosActions["ChaosCap_DropTarget"].Action(TargetAgents, actionsOut);
         }
-    
+
+
+        var continuousActionsOut = actionsOut.ContinuousActions;
+
 
     }
 
@@ -158,11 +176,12 @@ public class ChaosAgent : Agent
     protected override void OnEnable()
     {
 
-        Initialize();
+        Initializer();
 
         BehaviorParameters behaviorParameters = gameObject.GetComponent<BehaviorParameters>();
         
         int [] DiscreteActions = new int[ChaosActions.Count];
+
 
         for (int i = 0; i < ChaosActions.Count; i++)
         {
@@ -175,6 +194,7 @@ public class ChaosAgent : Agent
 
             behaviorParameters.BrainParameters.ActionSpec =  ActionSpec.MakeDiscrete(DiscreteActions);
 
+            behaviorParameters.BrainParameters.ActionSpec =  ActionSpec.MakeContinuous(ContinuousActionSize);
         }
 
         base.OnEnable();

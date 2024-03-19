@@ -30,6 +30,11 @@ namespace ActionCapabilities
                 case "ChaosCap_DropTarget":
                     cap = new ChaosCap_DropTarget();
                     break;
+                case "ChaosCap_WindEffect":
+                    cap = new ChaosCap_WindEffect();
+                    // cap.actionType = "Continuous";
+                    // cap.actionSize = 3;
+                    break;
                 default:
                     Debug.Log(capName + " action not found");
                     break;
@@ -43,9 +48,15 @@ namespace ActionCapabilities
 
         public string name = "";
 
+        public string actionType = "Discrete";
+
+        public int actionSize = 1;
+
         protected bool enabled = true;
 
-        public virtual void InitialiseCap(ChaosAgent agent) {
+        public virtual ActionCapability InitialiseCap(ChaosAgent agent) {
+
+            return this;
 
         }
         public virtual void Action(List<Agent> agents, ActionBuffers actionBuffers) {
@@ -65,8 +76,9 @@ namespace ActionCapabilities
 
         public string name = "ChaosCap_ChangeDestination";
 
-        public override void InitialiseCap(ChaosAgent agent) {
+        public override ActionCapability InitialiseCap(ChaosAgent agent) {
             Debug.Log(name + " action added");
+                    return this;
             }
 
         private bool enabled = true;
@@ -93,8 +105,9 @@ namespace ActionCapabilities
 
         public string name = "ChaosCap_ChangeTarget";
 
-        public override void InitialiseCap(ChaosAgent agent) {
+        public override ActionCapability InitialiseCap(ChaosAgent agent) {
             Debug.Log(name + " Action  added");
+                    return this;
             }
         private bool enabled = true;
         public override void Action(List<Agent> agents, ActionBuffers actionBuffers) {
@@ -117,14 +130,14 @@ namespace ActionCapabilities
         }
     } 
 
-
-
     public class ChaosCap_ChangecollideCount : ActionCapability {
 
         public string name = "ChaosCap_ChangecollideCount";
 
-        public override void InitialiseCap(ChaosAgent agent) {
+        public override ActionCapability InitialiseCap(ChaosAgent agent) {
             Debug.Log(name + " capability added");
+                    return this;
+
             }
         private bool enabled = true;
         public override void Action(List<Agent> agents, ActionBuffers actionBuffers) {
@@ -147,8 +160,9 @@ namespace ActionCapabilities
 
         public string name = "ChaosCap_DropTarget";
 
-        public override void InitialiseCap(ChaosAgent agent) {
+        public override ActionCapability InitialiseCap(ChaosAgent agent) {
             Debug.Log(name + " capability added");
+                    return this;
             }
         private bool enabled = true;
         public override void Action(List<Agent> agents, ActionBuffers actionBuffers) {
@@ -156,6 +170,38 @@ namespace ActionCapabilities
             foreach (UAVAgent agent in agents) {
                 agent.statespace.isHold = false;
                 agent.statespace.targetBox.GetComponent<smallbox>().isHold = false;
+            }
+        }
+
+         public void disable() {
+        enabled = false;
+        }
+
+        public void enable() {
+        enabled = false;
+        }
+    }
+
+    public class ChaosCap_WindEffect:ActionCapability {
+
+        public string name = "ChaosCap_WindEffect";
+
+        public string actionType = "Continuous";
+
+        public int actionSize = 3;
+
+        public override ActionCapability InitialiseCap(ChaosAgent agent) {
+            Debug.Log(name + " capability added");
+            this.actionSize = 3;
+            this.actionType = "Continuous";
+
+            return this;
+            }
+        private bool enabled = true;
+        public override void Action(List<Agent> agents, ActionBuffers actionBuffers) {
+            Debug.Log("Chaos action Performed " + name);
+            foreach (UAVAgent agent in agents) {
+                agent.GetComponent<WindEffect>().SetWind(new Vector3(0, 0, 0), 0);
             }
         }
 

@@ -62,6 +62,7 @@
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/PAVR_DroneRemote.cs" />
      <Compile Include="Assets/Scripts2/Agents/Chaos/StateSpace.cs" />
      <Compile Include="Assets/Scripts/LogisticsAcademy.cs" />
+     <Compile Include="Assets/Scripts2/WindEffect.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/EnviromentLighting.cs" />
      <Compile Include="Assets/Scripts2/Env.cs" />
      <Compile Include="Assets/ProfessionalAssets/DronePack/Scripts/DroneDistanceLimit.cs" />
